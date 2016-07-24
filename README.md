@@ -1,4 +1,4 @@
-# NyspiderApi
+# NyspiderAPI
 
 #####1.IT桔子
 ```python
@@ -62,5 +62,14 @@ result=bestRestaurant(cityId=1,rankType='popscore')#获取人气餐厅
 shoplist=dpindex(cityId=1,page=1)#商户风云榜
 
 restaurantlist=restaurantList('http://www.dianping.com/search/category/2/10/p2')#获取餐厅
+
+```
+
+#####7.获取代理IP
+爬取http://proxy.ipcn.org，获取可用代理
+```python
+from spider.proxyip import get_enableips
+
+enableips=get_enableips()
 
 ```
