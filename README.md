@@ -73,3 +73,15 @@ from spider.proxyip import get_enableips
 enableips=get_enableips()
 
 ```
+
+#####8.中国联通查询
+```python
+
+from spider.chinaunicom import *
+user='18500000000'#phonenumber
+passwd='000000'#服务密码
+unicom=Unicom(user,passwd)
+unicom.query_realtimefee()#查询实时话费
+unicom.query_package()#查询套餐余量
+
+```
