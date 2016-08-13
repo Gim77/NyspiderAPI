@@ -22,18 +22,23 @@ class IsEnable(threading.Thread):
         except:
             return False
 
+def parser(url):
+    html=requests.get(url).text
+    ips=re.findall('\d+\.\d+\.\d+\.\d+:\d+',html)
+    return ips
+
 def get_enableips():
     global enableips
-    html=requests.get('http://proxy.ipcn.org/proxya.html').text
-    ips=re.findall('\d+\.\d+\.\d+\.\d+:\d+',html)
-    html=requests.get('http://proxy.ipcn.org/proxya2.html').text
-    ips+=re.findall('\d+\.\d+\.\d+\.\d+:\d+',html)
-    threadings=[]
-    for ip in ips:
-        work=IsEnable(ip)
-        threadings.append(work)
-    for work in threadings:
-        work.start()
-    for work in threadings:
-        work.join()
+    urls=['http://proxy.ipcn.org/proxya.html','http://proxy.ipcn.org/proxya2.html','http://proxy.ipcn.org/proxyb.html','http://proxy.ipcn.org/proxyb2.html']
+    for url in urls:
+        ips=parser(url)
+        threadings=[]
+        for ip in ips:
+            work=IsEnable(ip)
+            work.setDaemon(True)
+            threadings.append(work)
+        for work in threadings:
+            work.start()
+        for work in threadings:
+            work.join()
     return enableips
