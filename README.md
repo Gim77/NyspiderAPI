@@ -85,3 +85,13 @@ unicom.query_realtimefee()#查询实时话费
 unicom.query_package()#查询套餐余量
 
 ```
+
+#####9.百度地图
+百度地图提供的API,对查询有一些限制，这里找出了web上查询的接口
+```python
+from spider.baidumap import *
+
+citys=citys()#获取城市列表
+result=search(keyword="美食",citycode="257",page=1)#获取搜索结果
+
+```
